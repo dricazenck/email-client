@@ -9,9 +9,23 @@
 
     <body>
         
-        <div>Hello</div>
+        <div class="menu">
+            <div class="title">Email Client</div>
+        </div>
+
+        <div class="emails">
+            <ul id="email-list"></ul>
+        </div>
+        
+        <div class="email-detail">Detail</div>
 
         <script src="assets/js/vendors.js"></script>
         <script src="assets/js/email-client.js"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                emailClient.init();
+            });
+        </script>
     </body>
 </html>
