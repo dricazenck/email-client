@@ -23,8 +23,7 @@
     "files.js"
   ],
   "dependencies": {
-    "jquery": "~2.1.3",
-    "bootstrap": "3.3.2"
+    "jquery": "~2.1.3"
   },
   "devDependencies": {
     "karma": "~0.4.6"
