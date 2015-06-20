@@ -6,8 +6,6 @@ var jsonValueOk = [{
     "fromEmail": "paulette_parker@gmail.com",
     "fromName": "Paulette Parker",
     "dateReceived": 1434813798485,
-    "index": 0,
-    "read": false,
     "_id": "558070eecadb84b2cd4d5ee2"
 }, {
     "content": "Fugiat amet dolore enim magna.\r\n",
@@ -15,8 +13,6 @@ var jsonValueOk = [{
     "fromEmail": "britney_swanson@gmail.com",
     "fromName": "Britney Swanson",
     "dateReceived": 1435052070000,
-    "index": 1,
-    "read": false,
     "_id": "558070ee57b34805dcfeaf07"
 }, {
     "content": "Content3",
@@ -24,8 +20,6 @@ var jsonValueOk = [{
     "fromEmail": "fromEmail3@gmail.com",
     "fromName": "fromName3",
     "dateReceived": dateNow,
-    "index": 2,
-    "read": true,
     "_id": "558070ee"
 }];
 
@@ -56,7 +50,7 @@ describe('tests for getEmails request', function() {
         xhr.open("GET", "/email-client/assets/emails.json");
         xhr.send();
 
-        emailApi.getEmails();
+        emailService.getEmails();
         expect(doneFn).toHaveBeenCalledWith(jsonValueOk);
 
         var successArgs = doneFn.calls.mostRecent().args[0];
@@ -72,7 +66,7 @@ describe('tests for getEmails request', function() {
 describe('Email Client Modules - Build Email List', function() {
 
     it('Should is buildEmailList correctly', function() {
-        var result = emailApi.buildList(jsonValueOk);
+        var result = emailService.buildList(jsonValueOk);
 
         expect(result).toContain("<li><div class='from-name'>Paulette Parker</div>");
         expect(result).toContain("<div class='subject'>Sub1</div>");
@@ -92,13 +86,13 @@ describe('Email Client Modules - Build Email List', function() {
     });
 
     it('Should is buildEmailList empty', function() {
-        var result = emailApi.buildList([]);
+        var result = emailService.buildList([]);
         expect(result).toContainText("");
 
-        result = emailApi.buildList();
+        result = emailService.buildList();
         expect(result).toContainText("");
 
-        result = emailApi.buildList(undefined);
+        result = emailService.buildList(undefined);
         expect(result).toContainText("");
     });
 
@@ -120,13 +114,13 @@ describe('Sort and Group By Date validations', function() {
     }];
 
     it('Should sort by Date desc', function() {
-        var result = emailApi.sortByDate(list);
+        var result = emailService.sortByDate(list);
         expect(result[0].data).toBe("24/06/2015");
         expect(result[1].data).toBe("23/06/2015");
         expect(result[2].data).toBe("17/01/1970");
         expect(result[3].data).toBe("17/01/1970");
 
-        result = emailApi.sortByDate(list, 'DESC');
+        result = emailService.sortByDate(list, 'DESC');
         expect(result[0].data).toBe("24/06/2015");
         expect(result[1].data).toBe("23/06/2015");
         expect(result[2].data).toBe("17/01/1970");
@@ -134,7 +128,7 @@ describe('Sort and Group By Date validations', function() {
     });
 
     it('Should sort by Date ASC', function() {
-        var result = emailApi.sortByDate(list, 'ASC');
+        var result = emailService.sortByDate(list, 'ASC');
         expect(result[0].data).toBe("17/01/1970");
         expect(result[1].data).toBe("17/01/1970");
         expect(result[2].data).toBe("23/06/2015");
@@ -142,7 +136,7 @@ describe('Sort and Group By Date validations', function() {
     });
 
     it('Should sort by Date desc', function() {
-        var result2 = emailApi.groupByDate(list);
+        var result2 = emailService.groupByDate(list);
 
         expect(result2[0].formattedDate).toBe("24-06-2015");
         expect(result2[0].grouped).toBe(true);
