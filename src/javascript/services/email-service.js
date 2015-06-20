@@ -1,9 +1,8 @@
-var emailApi = (function(jQuery) {
+var emailApi = (function(jQuery, dateUtils) {
 
     var URL_SERVER = "/email-client/assets/emails.json",
         RESULT_HTML = "<li><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></li>",
         RESULT_DATE_HTML = "<li class='email-date'>F_DATE</li>",
-        SEPARATOR = "-",
         EMPTY_VALUE = [];
 
     var emails = [];
@@ -47,7 +46,7 @@ var emailApi = (function(jQuery) {
         var index = "";
 
         for (index in result) {
-            result[index].formattedDate = formatDate(result[index].dateReceived);
+            result[index].formattedDate = dateUtils.formatDate(result[index].dateReceived);
 
             if (dateGroup !== result[index].formattedDate) {
                 dateGroup = result[index].formattedDate;
@@ -56,10 +55,6 @@ var emailApi = (function(jQuery) {
         }
 
         return result;
-    };
-
-    var formatDate = function(time) {
-        return new Date(time).toISOString().substr(0, 10).split(SEPARATOR).reverse().join(SEPARATOR);
     };
 
     var toEmailList = function(emails) {
@@ -79,12 +74,12 @@ var emailApi = (function(jQuery) {
         if (typeof emailItem.grouped === 'undefined') {
             return RESULT_HTML
                 .replace("FROM_NAME", emailItem.fromName)
-                .replace("TIME_AGO", formatDate(emailItem.dateReceived))
+                .replace("TIME_AGO", dateUtils.formatDate(emailItem.dateReceived))
                 .replace("SUBJECT", emailItem.subject);
         } else {
             return RESULT_HTML
                 .replace("FROM_NAME", emailItem.fromName)
-                .replace("TIME_AGO", formatDate(emailItem.dateReceived))
+                .replace("TIME_AGO", dateUtils.formatDate(emailItem.dateReceived))
                 .replace("SUBJECT", emailItem.subject)+
                 RESULT_DATE_HTML.replace("F_DATE", emailItem.formattedDate);
         }
@@ -97,4 +92,4 @@ var emailApi = (function(jQuery) {
         groupByDate: groupByDate
     };
 
-}(jQuery));
+}(jQuery, dateUtils));
