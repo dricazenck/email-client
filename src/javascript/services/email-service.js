@@ -24,7 +24,7 @@ var emailApi = (function(jQuery) {
 
     var sortByDate = function(result, type) {
         if (result) {
-            
+
             if (typeof type === 'undefined' || type === 'DESC') {
                 return result.sort(function(email1, email2) {
                     return email2.dateReceived - email1.dateReceived;
