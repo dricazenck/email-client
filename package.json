@@ -14,7 +14,6 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-version": "1.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-jasmine": "^0.8.2",
@@ -24,10 +23,12 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-karma": "^0.10.1",
     "grunt-text-replace": "^0.4.0",
+    "grunt-version": "1.0.0",
     "jasmine-core": "^2.2.0",
     "karma": "^0.12.31",
     "karma-coverage": "^0.2.7",
     "karma-jasmine": "^0.3.5",
+    "karma-jasmine-jquery": "^0.1.1",
     "karma-phantomjs-launcher": "^0.1.4"
   }
 }
