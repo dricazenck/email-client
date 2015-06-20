@@ -86,11 +86,30 @@ var emailService = (function(jQuery, dateUtils) {
         }
     };
 
+    var isRead = function (email) {
+        return email.read === true;
+    };
+
+    var isUnRead = function (email) {
+        return email.read === false;
+    };
+
+    var filterBy = function(result, attribute) {
+        if (attribute === "read") {
+            return result.filter(isRead);
+        } else if (attribute === "unread"){
+            return result.filter(isUnRead);
+        } else {
+            return result;
+        }
+    };
+
     return {
         getEmails: getEmails,
         buildList: toEmailList,
         sortByDate: sortByDate,
-        groupByDate: groupByDate
+        groupByDate: groupByDate,
+        filterBy: filterBy
     };
 
 }(jQuery, dateUtils));
