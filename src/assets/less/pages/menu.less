@@ -3,14 +3,36 @@
 // -------------------------------------
 
 .menu-content {
-	
-	background-color: @hu-blueDark;
-	color: @white;
-  	height: 56px;
+    
+    background-color: @hu-blueDark;
+    color: @white;
+    height: 72px;
+    margin: auto 0;
+    width: 100%;
 
-  	.title {
-  		font-size: @font-size-large;
-  		font-weight: bold;
-  		padding: 15px 0 0 30px;
-  	}
+    .title {
+        float: left;
+        font-size: @font-size-large;
+        font-weight: bold;
+        min-width: 200px;
+        padding: 24px 0 0 30px;
+    }
+
+    .filters {
+        min-width: 250px;
+        padding-top: 24px;
+    }
+
+    .search {
+        float: left;
+        margin-right: 15px;
+        padding-top: 15px;
+        width: 40%;
+    }
+
+    .search-input {
+        width: 100%;
+        height: 36px;
+    }
+
 }
