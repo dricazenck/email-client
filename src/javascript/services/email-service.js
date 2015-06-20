@@ -47,6 +47,7 @@ var emailApi = (function(jQuery, dateUtils) {
 
         for (index in result) {
             result[index].formattedDate = dateUtils.formatDate(result[index].dateReceived);
+            result[index].dateReceivedLabel = dateUtils.differenceEmail(new Date(result[index].dateReceived), new Date());
 
             if (dateGroup !== result[index].formattedDate) {
                 dateGroup = result[index].formattedDate;
@@ -74,12 +75,12 @@ var emailApi = (function(jQuery, dateUtils) {
         if (typeof emailItem.grouped === 'undefined') {
             return RESULT_HTML
                 .replace("FROM_NAME", emailItem.fromName)
-                .replace("TIME_AGO", dateUtils.formatDate(emailItem.dateReceived))
+                .replace("TIME_AGO", emailItem.dateReceivedLabel)
                 .replace("SUBJECT", emailItem.subject);
         } else {
             return RESULT_HTML
                 .replace("FROM_NAME", emailItem.fromName)
-                .replace("TIME_AGO", dateUtils.formatDate(emailItem.dateReceived))
+                .replace("TIME_AGO", emailItem.dateReceivedLabel)
                 .replace("SUBJECT", emailItem.subject)+
                 RESULT_DATE_HTML.replace("F_DATE", emailItem.formattedDate);
         }
