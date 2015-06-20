@@ -21,29 +21,13 @@ var emailClient = (function(jQuery, emailApi) {
     var loadEmails = function() {
 
         emailApi.getEmails(function(emails) {
-            jQuery("#email-list").html(buildEmailList(emails));
+            jQuery("#email-list").html(emailApi.buildList(emails));
         });
 
     };
 
-    var buildEmailList = function(emails) {
-        var templateEmails = "<li><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></li>";
-        var result = "";
-        var index = "";
-
-        for (index in emails) {
-            result += templateEmails
-                .replace("FROM_NAME", emails[index].fromName)
-                .replace("TIME_AGO", emails[index].dateReceived)
-                .replace("SUBJECT", emails[index].subject);
-        }
-
-        return result;
-    };
-
     return {
-        init: init,
-        buildList: buildEmailList
+        init: init
     };
 
 }(jQuery, emailApi));
