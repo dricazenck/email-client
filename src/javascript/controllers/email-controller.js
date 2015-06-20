@@ -18,16 +18,47 @@ var emailClient = (function(jQuery, emailService) {
         jQuery(content).load(PATH_PARTIALS + pageName);
     };
 
-    var loadEmails = function() {
+    var initEventsMenu = function() {
+        var readButtom = jQuery("#read");
+        var unreadButtom = jQuery("#unread");
 
-        emailService.getEmails(function(emails) {
+        readButtom.change(function() {
+            if (this.checked) {
+                loadEmails("read");
+                unreadButtom.prop("checked", false);
+            } else {
+                loadEmails();
+            }
+        });
+
+        unreadButtom.change(function() {
+            if(this.checked) {
+                loadEmails("unread");
+                readButtom.prop( "checked", false);
+            } else {
+                loadEmails();
+            }
+        });
+    };
+
+    var loadEmails = function(filter) {
+
+        emailService.getEmails(function(data) {
+            if (data) {
+                emails = emailService.filterBy(data,filter);
+            } else {
+                emails = data;
+            }
+
             jQuery("#email-list").html(emailService.buildList(emails));
+            jQuery("#result").html(emails.length+" conversations");
         });
 
     };
 
     return {
-        init: init
+        init: init,
+        initEvents: initEventsMenu,
     };
 
 }(jQuery, emailService));
