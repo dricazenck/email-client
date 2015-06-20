@@ -16,7 +16,16 @@ var jsonValueOk = [{
     "index": 1,
     "read": false,
     "_id": "558070ee57b34805dcfeaf07"
-}, ];
+}, {
+    "content": "Content3",
+    "subject": "Subject3",
+    "fromEmail": "fromEmail3@gmail.com",
+    "fromName": "fromName3",
+    "dateReceived": 1435052070000,
+    "index": 2,
+    "read": true,
+    "_id": "558070ee"
+}];
 
 describe('tests for getEmails request', function() {
 
@@ -64,11 +73,15 @@ describe('Email Client Modules - Build Email List', function() {
         var result = emailApi.buildList(jsonValueOk);
 
         expect(result).toContain("<li><div class='from-name'>Paulette Parker</div>");
-        expect(result).toContain("<div class='time-ago'>20-06-2015</div>");
         expect(result).toContain("<div class='subject'>aliquip commodo ex nostrud anim ullamco</div>");
+        expect(result).toContain("<li class='email-date'>23-06-2015</li>");
+
         expect(result).toContain("<li><div class='from-name'>Britney Swanson</div>");
-        expect(result).toContain("<div class='time-ago'>23-06-2015</div>");
         expect(result).toContain("<div class='subject'>ullamco anim duis minim fugiat nostrud</div></li>");
+        expect(result).toContain("<li class='email-date'>20-06-2015</li>");
+
+        expect(result).toBe("<li><div class='from-name'>Britney Swanson</div><div class='time-ago'>23-06-2015</div><div class='subject'>ullamco anim duis minim fugiat nostrud</div></li><li class='email-date'>23-06-2015</li><li><div class='from-name'>fromName3</div><div class='time-ago'>23-06-2015</div><div class='subject'>Subject3</div></li><li><div class='from-name'>Paulette Parker</div><div class='time-ago'>20-06-2015</div><div class='subject'>aliquip commodo ex nostrud anim ullamco</div></li><li class='email-date'>20-06-2015</li>");
+
     });
 
     it('Should is buildEmailList empty', function() {
@@ -84,7 +97,7 @@ describe('Email Client Modules - Build Email List', function() {
 
 });
 
-describe('Email Api - Sort By Date', function() {
+describe('Sort and Group By Date validations', function() {
     var list = [{
         "dateReceived": 1435052070000,
         "data": "23/06/2015"
@@ -99,17 +112,38 @@ describe('Email Api - Sort By Date', function() {
         "data": "24/06/2015"
     }];
 
-    it('Should is order by Date desc', function() {
+    it('Should sort by Date desc', function() {
         var result = emailApi.sortByDate(list);
-
-        expect(result[0].data).toContain("24/06/2015");
-        expect(result[1].data).toContain("23/06/2015");
-        expect(result[2].data).toContain("17/01/1970");
+        expect(result[0].data).toBe("24/06/2015");
+        expect(result[1].data).toBe("23/06/2015");
+        expect(result[2].data).toBe("17/01/1970");
+        expect(result[3].data).toBe("17/01/1970");
 
         result = emailApi.sortByDate(list, 'DESC');
+        expect(result[0].data).toBe("24/06/2015");
+        expect(result[1].data).toBe("23/06/2015");
+        expect(result[2].data).toBe("17/01/1970");
+        expect(result[3].data).toBe("17/01/1970");
+    });
 
-        expect(result[0].data).toContain("24/06/2015");
-        expect(result[1].data).toContain("23/06/2015");
-        expect(result[2].data).toContain("17/01/1970");
+    it('Should sort by Date ASC', function() {
+        var result = emailApi.sortByDate(list, 'ASC');
+        expect(result[0].data).toBe("17/01/1970");
+        expect(result[1].data).toBe("17/01/1970");
+        expect(result[2].data).toBe("23/06/2015");
+        expect(result[3].data).toBe("24/06/2015");
+    });
+
+    it('Should sort by Date desc', function() {
+        var result2 = emailApi.groupByDate(list);
+
+        expect(result2[0].formattedDate).toBe("24-06-2015");
+        expect(result2[0].grouped).toBe(true);
+        expect(result2[1].formattedDate).toBe("23-06-2015");
+        expect(result2[1].grouped).toBe(true);
+        expect(result2[2].formattedDate).toBe("17-01-1970");
+        expect(result2[2].grouped).toBe(true);
+        expect(result2[3].formattedDate).toBe("17-01-1970");
+        expect(result2[3].grouped).toBeUndefined();
     });
 });
