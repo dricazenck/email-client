@@ -1,10 +1,8 @@
-var emailClient = (function(jQuery) {
+var emailClient = (function(jQuery, emailApi) {
 
-    var URL_SERVER = "/email-client/assets/emails.json", 
-        PATH_PARTIALS = "assets/partials/";
+    var PATH_PARTIALS = "assets/partials/",
+        emails = [];
 
-    var emails = [];
-    
     var init = function() {
         loadInitPagesComponents();
         loadEmails();
@@ -20,18 +18,12 @@ var emailClient = (function(jQuery) {
         jQuery(content).load(PATH_PARTIALS + pageName);
     };
 
-    var getEmails = function(callback) {
-        jQuery.ajax({
-            type: 'GET',
-            url: URL_SERVER,
-            dataType: 'json',
-            success: function(results) {
-                callback(results);
-            },
-            fail: function() {
-                callback([]);
-            }
+    var loadEmails = function() {
+
+        emailApi.getEmails(function(emails) {
+            jQuery("#email-list").html(buildEmailList(emails));
         });
+
     };
 
     var buildEmailList = function(emails) {
@@ -49,17 +41,9 @@ var emailClient = (function(jQuery) {
         return result;
     };
 
-    var loadEmails = function() {
-
-        getEmails(function(emails) {
-            jQuery("#email-list").html(buildEmailList(emails));
-        });
-
-    };
-
     return {
         init: init,
         buildList: buildEmailList
     };
 
-}(jQuery));
+}(jQuery, emailApi));
