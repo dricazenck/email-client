@@ -24,7 +24,9 @@ var dateUtils = (function(jQuery) {
     var differenceEmail = function(_initial, _final) {
         var difference =  differenceInSecs(_initial, _final);
 
-        if (difference < MINUTE) {
+        if (difference < 1 ) {
+            return "now";
+        }else if (difference > 0 && difference < MINUTE) {
             return Math.floor(difference) + " seconds ago";
         } else if (difference >= MINUTE && difference < HOURS) {
             return Math.floor(difference / MINUTE) + " minutes ago";
