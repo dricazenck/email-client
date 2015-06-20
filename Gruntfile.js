@@ -37,7 +37,9 @@ module.exports = function(grunt) {
             },
             js: {
                 src: [
-                    'src/javascript/**/*.js'
+                    'src/javascript/utils/**/*.js',
+                    'src/javascript/services/**/*.js',
+                    'src/javascript/controllers/**/*.js'
                 ],
                 dest: './src/assets/js/email-client.js',
             }
@@ -89,17 +91,17 @@ module.exports = function(grunt) {
         },
         watch: {
             js: {
-                files: ['Gruntfile.js', 'src/javascript/**/*.js', 'test/spec/**/*.js'],
+                files: ['Gruntfile.js','karma.conf.js','src/javascript/**/*.js', 'test/spec/**/*.js'],
                 tasks: ['jshint', 'concat:js', 'karma'],
                 options: {
-                    livereload: true 
+                    livereload: true
                 }
             },
             less: {
                 files: ['./src/assets/**/*.less'],
                 tasks: ['less:development'],
                 options: {
-                    livereload: true 
+                    livereload: true
                 }
             }
         },
@@ -125,6 +127,6 @@ module.exports = function(grunt) {
     grunt.registerTask('prod', ['clean', 'less:prod', 'concat', 'uglify', 'replace:prod']);
 
     grunt.registerTask('default', ['clean', 'jshint', 'less:development', 'concat', 'replace:dev', 'watch']);
-    
+
     grunt.registerTask('test', ['clean', 'jshint', 'concat', 'replace:dev', 'karma', 'watch']);
 };

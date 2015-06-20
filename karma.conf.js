@@ -3,7 +3,9 @@ module.exports = function(config) {
         frameworks: ['jasmine-jquery','jasmine-ajax', 'jasmine'],
         files: [
             'src/assets/js/vendors.js',
-            'src/javascript/**/*.js',
+            'src/javascript/utils/**/*.js',
+            'src/javascript/services/**/*.js',
+            'src/javascript/controllers/**/*.js',
             'test/spec/**/*.js'
         ],
         preprocessors: {
