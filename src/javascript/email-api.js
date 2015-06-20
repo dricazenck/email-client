@@ -10,7 +10,6 @@ var emailApi = (function(jQuery) {
             url: URL_SERVER,
             dataType: 'json',
             success: function(results) {
-                console.log(result);
                 callback(results);
             },
             fail: function() {
