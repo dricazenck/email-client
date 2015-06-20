@@ -129,7 +129,7 @@
     "subject": "amet qui et velit non reprehenderit",
     "fromEmail": "paige_murray@gmail.com",
     "fromName": "Paige Murray",
-    "dateReceived": 1433824400,
+    "dateReceived": 1427241600000,
     "index": 14,
     "read": true,
     "_id": "558070eebd5831a48ced7c03"
@@ -156,7 +156,7 @@
     "subject": "quis ipsum voluptate fugiat nostrud incididunt",
     "fromEmail": "barr_spence@gmail.com",
     "fromName": "Barr Spence",
-    "dateReceived": 1434006931,
+    "dateReceived": 1435255200000,
     "index": 17,
     "read": false,
     "_id": "558070ee3cc238da8fb1f79f"
@@ -264,7 +264,7 @@
     "subject": "voluptate sit veniam laboris tempor mollit",
     "fromEmail": "ratliff_allison@gmail.com",
     "fromName": "Ratliff Allison",
-    "dateReceived": 1434171850,
+    "dateReceived": 1435258800000,
     "index": 29,
     "read": true,
     "_id": "558070ee465486cf4a3108d7"
@@ -372,7 +372,7 @@
     "subject": "excepteur ut dolor proident deserunt aliquip",
     "fromEmail": "payne_whitaker@gmail.com",
     "fromName": "Payne Whitaker",
-    "dateReceived": 1433934152,
+    "dateReceived": 1435124400000,
     "index": 41,
     "read": true,
     "_id": "558070ee719df5c043eb13a6"
@@ -471,7 +471,7 @@
     "subject": "esse eu esse in enim ut",
     "fromEmail": "cobb_bennett@gmail.com",
     "fromName": "Cobb Bennett",
-    "dateReceived": 1433626521,
+    "dateReceived": 1435131600000,
     "index": 52,
     "read": false,
     "_id": "558070eec1df64e1d27b4b58"
@@ -858,7 +858,7 @@
     "subject": "amet do dolore cupidatat proident tempor",
     "fromEmail": "kaufman_diaz@gmail.com",
     "fromName": "Kaufman Diaz",
-    "dateReceived": 1433694247,
+    "dateReceived": 1435052070000,
     "index": 95,
     "read": true,
     "_id": "558070ee0148f96c1bf915da"
@@ -885,7 +885,7 @@
     "subject": "eiusmod magna magna magna culpa laborum",
     "fromEmail": "gonzales_payne@gmail.com",
     "fromName": "Gonzales Payne",
-    "dateReceived": 1433311317,
+    "dateReceived": 1435138470000,
     "index": 98,
     "read": true,
     "_id": "558070ee52deb7d9097aa7e6"
