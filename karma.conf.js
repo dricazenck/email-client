@@ -3,11 +3,11 @@ module.exports = function(config) {
         frameworks: ['jasmine-jquery', 'jasmine'],
         files: [
             'src/assets/js/vendors.js',
-            'src/app/**/*.js',
+            'src/javascript/**/*.js',
             'test/spec/**/*.js'
         ],
         preprocessors: {
-            '**/src/app/**/*.js': 'coverage'
+            '**/src/javascript/**/*.js': 'coverage'
         },
 
         reporters: ['progress', 'coverage'],
