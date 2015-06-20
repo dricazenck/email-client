@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
-            files: ['Gruntfile.js', 'src/app/**/*.js', 'test/spec/**/*.js'],
+            files: ['Gruntfile.js', 'src/javascript/**/*.js', 'test/spec/**/*.js'],
             options: {
                 globals: {
                     jQuery: true
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             },
             js: {
                 src: [
-                    'src/app/**/*.js'
+                    'src/javascript/**/*.js'
                 ],
                 dest: './src/assets/js/email-client.js',
             }
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
         },
         watch: {
             js: {
-                files: ['Gruntfile.js', 'src/app/**/*.js', 'test/spec/**/*.js'],
+                files: ['Gruntfile.js', 'src/javascript/**/*.js', 'test/spec/**/*.js'],
                 tasks: ['jshint', 'concat:js', 'karma'],
                 options: {
                     livereload: true 
