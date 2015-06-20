@@ -1,4 +1,4 @@
-var emailApi = (function(jQuery, dateUtils) {
+var emailService = (function(jQuery, dateUtils) {
 
     var URL_SERVER = "/email-client/assets/emails.json",
         RESULT_HTML = "<li><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></li>",

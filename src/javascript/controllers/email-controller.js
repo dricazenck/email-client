@@ -1,4 +1,4 @@
-var emailClient = (function(jQuery, emailApi) {
+var emailClient = (function(jQuery, emailService) {
 
     var PATH_PARTIALS = "assets/partials/",
         emails = [];
@@ -20,8 +20,8 @@ var emailClient = (function(jQuery, emailApi) {
 
     var loadEmails = function() {
 
-        emailApi.getEmails(function(emails) {
-            jQuery("#email-list").html(emailApi.buildList(emails));
+        emailService.getEmails(function(emails) {
+            jQuery("#email-list").html(emailService.buildList(emails));
         });
 
     };
@@ -30,4 +30,4 @@ var emailClient = (function(jQuery, emailApi) {
         init: init
     };
 
-}(jQuery, emailApi));
+}(jQuery, emailService));
