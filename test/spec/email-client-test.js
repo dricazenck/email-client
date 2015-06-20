@@ -10,50 +10,33 @@ describe("default test initial config values", function() {
     });
 });
 
-var jsonValueOk = [{
-    "content": "Laboris ea eiusmod consectetur .\r\n",
-    "subject": "aliquip commodo ex nostrud anim ullamco",
-    "fromEmail": "paulette_parker@gmail.com",
-    "fromName": "Paulette Parker",
-    "dateReceived": 1433688138,
-    "index": 0,
-    "read": false,
-    "_id": "558070eecadb84b2cd4d5ee2"
-}, {
-    "content": "Fugiat amet dolore enim magna.\r\n",
-    "subject": "ullamco anim duis minim fugiat nostrud",
-    "fromEmail": "britney_swanson@gmail.com",
-    "fromName": "Britney Swanson",
-    "dateReceived": 1434247931,
-    "index": 1,
-    "read": false,
-    "_id": "558070ee57b34805dcfeaf07"
-}];
+describe('Email Client Modules - Init', function() {
 
-describe('Email Client Modules - Load', function() {
-
-    it('Should is toBeDefined emailClient', function() {
+    it('Should load emailClient', function() {
         expect(emailClient).toBeDefined();
-
-        emailClient.init();
-
-        var isItDone = false;
-        $.ajax('emails.json').fail(function() {
-            console.log("xuxu");
-            isItDone = true;
-        });
-
-        setTimeout(function() {
-            expect(isItDone).toBeTrue();
-            done(); 
-        }, 500);
-        
-        expect(true).toEqual(true);
-
     });
 });
 
 describe('Email Client Modules - Build Email List', function() {
+    var jsonValueOk = [{
+        "content": "Laboris ea eiusmod consectetur .\r\n",
+        "subject": "aliquip commodo ex nostrud anim ullamco",
+        "fromEmail": "paulette_parker@gmail.com",
+        "fromName": "Paulette Parker",
+        "dateReceived": 1433688138,
+        "index": 0,
+        "read": false,
+        "_id": "558070eecadb84b2cd4d5ee2"
+    }, {
+        "content": "Fugiat amet dolore enim magna.\r\n",
+        "subject": "ullamco anim duis minim fugiat nostrud",
+        "fromEmail": "britney_swanson@gmail.com",
+        "fromName": "Britney Swanson",
+        "dateReceived": 1434247931,
+        "index": 1,
+        "read": false,
+        "_id": "558070ee57b34805dcfeaf07"
+    }];
 
     it('Should is buildEmailList correctly', function() {
         var result = emailClient.buildList(jsonValueOk);
