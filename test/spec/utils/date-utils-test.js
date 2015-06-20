@@ -63,12 +63,15 @@ describe('Date Utils - diff email', function() {
 
     it('Should diffInSecs is equals', function() {
         var today = new Date();
-        expect(dateUtils.diffInSecs(today, today)).toBe(0);
+        expect(dateUtils.differenceEmail(today, today)).toBe("now");
     });
 
     it('Should differenceEmail return label in secs', function() {
         var date2 = new Date(2015, 4, 11, 09, 30, 23);
         expect(dateUtils.differenceEmail(date1, date2)).toBe("2 seconds ago");
+
+        date2 = new Date(2015, 4, 11, 09, 30, 22);
+        expect(dateUtils.differenceEmail(date1, date2)).toBe("1 seconds ago");
 
         date2 = new Date(2015, 4, 11, 09, 30, 31);
         expect(dateUtils.differenceEmail(date1, date2)).toBe("10 seconds ago");
@@ -90,15 +93,24 @@ describe('Date Utils - diff email', function() {
     it('Should differenceEmail return label in days', function() {
         var date2 = new Date(2015, 4, 14, 09, 30, 21);
         expect(dateUtils.differenceEmail(date1, date2)).toBe("3 days ago");
+
+        date2 = new Date(2015, 4, 12, 09, 30, 21);
+        expect(dateUtils.differenceEmail(date1, date2)).toBe("1 days ago");
     });
 
     it("Should differenceEmail return label in month", function() {
         var date2 = new Date(2015, 5, 11, 09, 30, 21);
         expect(dateUtils.differenceEmail(date1, date2)).toBe("1 months ago");
+
+        date2 = new Date(2016, 3, 11, 09, 30, 21);
+        expect(dateUtils.differenceEmail(date1, date2)).toBe("11 months ago");
     });
 
     it('Should differenceEmail return label in years', function() {
         var date2 = new Date(2017, 5, 11, 09, 30, 21);
         expect(dateUtils.differenceEmail(date1, date2)).toBe("2 years ago");
+
+        date2 = new Date(2016, 9, 11, 09, 30, 21);
+        expect(dateUtils.differenceEmail(date1, date2)).toBe("1 years ago");
     });
 });
