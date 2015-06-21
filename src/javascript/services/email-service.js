@@ -3,7 +3,8 @@ var emailService = (function(jQuery, dateUtils) {
     var URL_SERVER = "/email-client/assets/emails.json",
         RESULT_HTML = "<li id='ID_EMAIL'><div class='email-item'><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></div></li>",
         RESULT_DATE_HTML = "<li class='email-date'><div>F_DATE</div></li>",
-        EMPTY_VALUE = [];
+        EMPTY_VALUE = [],
+        STRING_SPACE = " ";
 
     var emails = [];
 
@@ -116,6 +117,19 @@ var emailService = (function(jQuery, dateUtils) {
         return item[0];
     };
 
+    var findByTerm = function(result, term) {
+
+        var containTerm = function (email) {
+            var fieldsToFind = email.fromName + STRING_SPACE +
+                email.fromEmail + STRING_SPACE +
+                email.subject + STRING_SPACE + email.content;
+
+            return fieldsToFind.toUpperCase().indexOf(term.toUpperCase()) > -1;
+        };
+
+        return result.filter(containTerm);
+    };
+
     var toEmailView = function(emailContent) {
         jQuery("#email_from").html("<label>From: </label>"+emailContent.fromName+" <span>("+emailContent.fromEmail+")</span>");
         jQuery("#email_received").html("<label>Received: </label>"+emailContent.formattedDate);
@@ -130,7 +144,8 @@ var emailService = (function(jQuery, dateUtils) {
         sortByDate: sortByDate,
         groupByDate: groupByDate,
         filter: filter,
-        contentById: getContentById
+        contentById: getContentById,
+        findByTerm: findByTerm
     };
 
 }(jQuery, dateUtils));
