@@ -23,18 +23,18 @@ var emailClient = (function(jQuery, emailService) {
         var unreadButtom = jQuery("#unread");
 
         readButtom.change(function() {
+            unreadButtom.prop("checked", false);
             if (this.checked) {
                 loadEmails("read");
-                unreadButtom.prop("checked", false);
             } else {
                 loadEmails();
             }
         });
 
         unreadButtom.change(function() {
+            readButtom.prop( "checked", false);
             if(this.checked) {
                 loadEmails("unread");
-                readButtom.prop( "checked", false);
             } else {
                 loadEmails();
             }
@@ -42,7 +42,6 @@ var emailClient = (function(jQuery, emailService) {
     };
 
     var loadEmails = function(filter) {
-
         emailService.getEmails(function(data) {
             if (data) {
                 emails = emailService.filterBy(data,filter);
