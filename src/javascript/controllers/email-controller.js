@@ -45,7 +45,7 @@ var emailClient = (function(jQuery, emailService) {
                 emailContent = emailService.contentById(emails, this.id);
 
                 loadPage("#email", "view_email.html", function() {
-                    jQuery("#conteudo_email").html(emailContent[0].content);
+                    emailService.buildEmailView(emailContent);
                 });
             }
         });

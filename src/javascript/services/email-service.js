@@ -111,12 +111,22 @@ var emailService = (function(jQuery, dateUtils) {
             return email._id === id;
         };
 
-        return result.filter(isSameId);
+        var item = result.filter(isSameId);
+        item[0].formattedDate = dateUtils.formatDateTime(item[0].dateReceived);
+        return item[0];
+    };
+
+    var toEmailView = function(emailContent) {
+        jQuery("#email_from").html(emailContent.fromName+" ("+emailContent.fromEmail+")");
+        jQuery("#email_received").html(emailContent.formattedDate);
+        jQuery("#email_subject").html(emailContent.subject);
+        jQuery("#email_content").html(emailContent.content);
     };
 
     return {
         getEmails: getEmails,
         buildList: toEmailList,
+        buildEmailView: toEmailView,
         sortByDate: sortByDate,
         groupByDate: groupByDate,
         filter: filter,

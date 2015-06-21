@@ -1,5 +1,3 @@
-var dateNow = new Date().getTime();
-
 var jsonValueOk = [{
     "content": "Laboris ea eiusmod consectetur .\r\n",
     "subject": "Sub1",
@@ -19,7 +17,7 @@ var jsonValueOk = [{
     "subject": "Subject3",
     "fromEmail": "fromEmail3@gmail.com",
     "fromName": "fromName3",
-    "dateReceived": dateNow,
+    "dateReceived": 1435052070000,
     "_id": "558070ee"
 }];
 
@@ -59,43 +57,6 @@ describe('tests for getEmails request', function() {
         request = jasmine.Ajax.requests.mostRecent();
         expect(request.url).toBe("/email-client/assets/emails.json");
         expect(request.method).toBe('GET');
-    });
-
-});
-
-describe('Email Client Modules - Build Email List', function() {
-
-    it('Should is buildEmailList correctly', function() {
-        var result = emailService.buildList(jsonValueOk);
-
-        expect(result).toContain("<li id='558070eecadb84b2cd4d5ee2'>");
-        expect(result).toContain("<div class='from-name'>Paulette Parker</div>");
-        expect(result).toContain("<div class='subject'>Sub1</div>");
-        expect(result).toContain("<li class='email-date'>23-06-2015</li>");
-
-        expect(result).toContain("<li id='558070ee57b34805dcfeaf07'>");
-        expect(result).toContain("<div class='from-name'>Britney Swanson</div>");
-        expect(result).toContain("<div class='subject'>Sub2</div></li>");
-        expect(result).toContain("<li class='email-date'>20-06-2015</li>");
-
-        expect(result).toContain("<li id='558070ee'><div class='from-name'>fromName3</div>");
-        expect(result).toContain("<div class='subject'>Subject3</div></li>");
-        expect(result).toContain("<li class='email-date'>20-06-2015</li>");
-
-        expect(result).toContain("ago</div>");
-        expect(result).toContain("<div class='time-ago'>now</div>");
-        expect(result).not.toContain("<div class='time-ago'>0 seconds ago</div>");
-    });
-
-    it('Should is buildEmailList empty', function() {
-        var result = emailService.buildList([]);
-        expect(result).toContainText("");
-
-        result = emailService.buildList();
-        expect(result).toContainText("");
-
-        result = emailService.buildList(undefined);
-        expect(result).toContainText("");
     });
 
 });
