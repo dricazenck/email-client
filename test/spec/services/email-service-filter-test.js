@@ -116,4 +116,31 @@ describe('Email Service findByTerm validations', function() {
         expect(result[1].content).toBe("Fugiat amet dolore Content enim magna");
         expect(result[2].content).toBe("Content 3");
     });
+
+    it('Should find by term using filter search', function() {
+        var result = emailService.filter(jsonEmail, "search", "content");
+        expect(result).toBeDefined();
+        expect(result.length).toBe(3);
+        expect(result[0].content).toBe("Laboris content ea eiusmod consectetur");
+        expect(result[1].content).toBe("Fugiat amet dolore Content enim magna");
+        expect(result[2].content).toBe("Content 3");
+    });
+
+    it('Should return empty when params is wrong', function() {
+        var result = emailService.findByTerm(undefined, "content");
+        expect(result).toBeDefined();
+        expect(result.length).toBe(0);
+
+        result = emailService.findByTerm();
+        expect(result).toBeDefined();
+        expect(result.length).toBe(0);
+
+        result = emailService.findByTerm([]);
+        expect(result).toBeDefined();
+        expect(result.length).toBe(0);
+
+        result = emailService.findByTerm("");
+        expect(result).toBeDefined();
+        expect(result.length).toBe(0);
+    });
 });

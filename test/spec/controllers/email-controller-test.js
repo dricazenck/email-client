@@ -11,7 +11,6 @@ describe("default test initial config values", function() {
 });
 
 describe('Email Client Modules - Init', function() {
-
 	it('Should load emailClient', function() {
 		expect(emailClient).toBeDefined();
 	});
@@ -72,5 +71,37 @@ describe("Button Click Event Checkbox", function() {
 		expect(spyEvent).toHaveBeenTriggered();
         expect(unreadButton).not.toBeChecked();
         expect(readButton).not.toBeChecked();
+	});
+});
+
+
+describe("Button Click Event Checkbox", function() {
+	var spyEvent;
+
+	beforeEach(function() {
+		setFixtures("<input id='search-input' type='text' value='value to search'>"+
+					"<button type='button' id='search-button'></button>");
+	});
+
+	it("should invoke the read click event.", function() {
+        emailClient.initEvents();
+        var button = jQuery('#search-button');
+        var input = jQuery('#search-input');
+
+		spyEvent = spyOnEvent('#search-button', 'click');
+		button.trigger("click");
+
+		expect('click').toHaveBeenTriggeredOn('#search-button');
+		expect(spyEvent).toHaveBeenTriggered();
+		expect(input.val()).toBe('value to search');
+
+		//do nothing
+		input.val("");
+		spyEvent = spyOnEvent('#search-button', 'click');
+		button.trigger("click");
+
+		expect('click').toHaveBeenTriggeredOn('#search-button');
+		expect(spyEvent).toHaveBeenTriggered();
+		expect(input.val()).toBe('');
 	});
 });

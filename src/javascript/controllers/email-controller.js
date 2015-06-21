@@ -1,6 +1,7 @@
 var emailClient = (function(jQuery, emailService) {
 
     var PATH_PARTIALS = "assets/partials/",
+        ENTER_KEY = 13,
         emails = [],
         emailContent = {};
 
@@ -15,10 +16,10 @@ var emailClient = (function(jQuery, emailService) {
         jQuery(".container-content").css("height", availableHeight+"px");
     };
 
-    var loadEmails = function(filter) {
+    var loadEmails = function(filter, term) {
         emailService.getEmails(function(data) {
             if (data) {
-                emails = emailService.filter(data,filter);
+                emails = emailService.filter(data,filter, term);
             } else {
                 emails = data;
             }
@@ -68,6 +69,8 @@ var emailClient = (function(jQuery, emailService) {
     var initEventsMenu = function() {
         var readButtom = jQuery("#read");
         var unreadButtom = jQuery("#unread");
+        var inputSearch = jQuery("#search-input");
+        var searchButtom = jQuery("#search-button");
 
         readButtom.change(function() {
             unreadButtom.prop("checked", false);
@@ -86,6 +89,22 @@ var emailClient = (function(jQuery, emailService) {
                 loadEmails();
             }
         });
+
+        searchButtom.click(function() {
+            runSearch(inputSearch.val());
+        });
+
+        inputSearch.keypress(function (e) {
+            if (e.which === ENTER_KEY) {
+                runSearch(inputSearch.val());
+            }
+        });
+    };
+
+    var runSearch = function(term) {
+        if (term.trim().length > 0) {
+            loadEmails("search", term.trim());
+        }
     };
 
     return {

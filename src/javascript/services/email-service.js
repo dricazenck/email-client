@@ -97,11 +97,13 @@ var emailService = (function(jQuery, dateUtils) {
         return email.read === false;
     };
 
-    var filter = function(result, attribute) {
+    var filter = function(result, attribute, term) {
         if (attribute === "read") {
             return result.filter(isRead);
         } else if (attribute === "unread"){
             return result.filter(isUnRead);
+        } else if (attribute === "search"){
+            return findByTerm(result, term);
         } else {
             return result;
         }
@@ -118,16 +120,20 @@ var emailService = (function(jQuery, dateUtils) {
     };
 
     var findByTerm = function(result, term) {
+        if (result) {
+            var containTerm = function (email) {
+                var fieldsToFind = email.fromName + STRING_SPACE +
+                    email.fromEmail + STRING_SPACE +
+                    email.subject + STRING_SPACE + email.content;
 
-        var containTerm = function (email) {
-            var fieldsToFind = email.fromName + STRING_SPACE +
-                email.fromEmail + STRING_SPACE +
-                email.subject + STRING_SPACE + email.content;
+                return fieldsToFind.toUpperCase().indexOf(term.toUpperCase()) > -1;
+            };
 
-            return fieldsToFind.toUpperCase().indexOf(term.toUpperCase()) > -1;
-        };
+            return result.filter(containTerm);
+        } else {
+            return EMPTY_VALUE;
+        }
 
-        return result.filter(containTerm);
     };
 
     var toEmailView = function(emailContent) {
