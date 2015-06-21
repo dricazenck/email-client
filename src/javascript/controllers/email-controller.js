@@ -51,6 +51,10 @@ var emailClient = (function(jQuery, emailService) {
             if (this.id !== "") {
                 emailContent = emailService.contentById(emails, this.id);
 
+
+                jQuery(".email-sected").removeClass("email-sected");
+                jQuery("#"+this.id).find(".email-item").addClass("email-sected");
+
                 loadPage("#email", "view_email.html", function() {
                     emailService.buildEmailView(emailContent);
                     defineHeight();
