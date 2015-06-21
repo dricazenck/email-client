@@ -114,3 +114,23 @@ describe('Date Utils - diff email', function() {
         expect(dateUtils.differenceEmail(date1, date2)).toBe("1 years ago");
     });
 });
+
+describe('Date Utils - formatDateTime', function() {
+
+    it('Should format date correctly', function() {
+        var date = dateUtils.formatDateTime(new Date(2016, 9, 11, 09, 30, 21));
+
+        expect(date).toBeDefined();
+        expect(date).not.toBe('Invalid Date');
+
+        expect(date).toContain('09:30:21');
+        expect(date).toContain('11');
+        expect(date).toContain('2016');
+    });
+
+    it('Should format date correctly', function() {
+        var date = dateUtils.formatDateTime("avc");
+        expect(date).toBeDefined();
+        expect(date).not.toBe('Invalid Date');
+    });
+});

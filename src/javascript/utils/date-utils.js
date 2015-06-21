@@ -1,4 +1,5 @@
 var dateUtils = (function(jQuery) {
+
     var SEPARATOR = "-",
         MINUTE = 60,
         HOURS = MINUTE * 60,
@@ -14,6 +15,18 @@ var dateUtils = (function(jQuery) {
         }
 
         return date.toISOString().substr(0, 10).split(SEPARATOR).reverse().join(SEPARATOR);
+    };
+
+    var formatDateTime = function(time, locales) {
+        var options = {year: 'numeric', month: 'long', day: '2-digit',
+                        hour: '2-digit', minute: 'numeric' };
+
+        var date = new Date(time);
+        if (date.toString() === 'Invalid Date') {
+            date = new Date();
+        }
+
+        return date.toLocaleString(locales, options);
     };
 
     var differenceInSecs = function(_initial, _final) {
@@ -44,7 +57,8 @@ var dateUtils = (function(jQuery) {
     return {
         formatDate: formatDateBrazilian,
         diffInSecs: differenceInSecs,
-        differenceEmail: differenceEmail
+        differenceEmail: differenceEmail,
+        formatDateTime: formatDateTime
     };
 
 }(jQuery));
