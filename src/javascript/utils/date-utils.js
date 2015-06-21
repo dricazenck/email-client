@@ -17,7 +17,7 @@ var dateUtils = (function(jQuery) {
         return date.toISOString().substr(0, 10).split(SEPARATOR).reverse().join(SEPARATOR);
     };
 
-    var formatDateTime = function(time, locales) {
+    var formatDateTime = function(time) {
         var options = {year: 'numeric', month: 'long', day: '2-digit',
                         hour: '2-digit', minute: 'numeric' };
 
@@ -26,7 +26,7 @@ var dateUtils = (function(jQuery) {
             date = new Date();
         }
 
-        return date.toLocaleString(locales, options);
+        return date.toLocaleString(options);
     };
 
     var differenceInSecs = function(_initial, _final) {
