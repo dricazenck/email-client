@@ -18,6 +18,14 @@ var emailClient = (function(jQuery, emailService) {
         jQuery(content).load(PATH_PARTIALS + pageName);
     };
 
+    var loadEventEmails = function(){
+        var emailsList = jQuery("#email-list li");
+
+        emailsList.click(function() {
+            console.log("ID.. "+this.id);
+        });
+    };
+
     var initEventsMenu = function() {
         var readButtom = jQuery("#read");
         var unreadButtom = jQuery("#unread");
@@ -44,7 +52,7 @@ var emailClient = (function(jQuery, emailService) {
     var loadEmails = function(filter) {
         emailService.getEmails(function(data) {
             if (data) {
-                emails = emailService.filterBy(data,filter);
+                emails = emailService.filter(data,filter);
             } else {
                 emails = data;
             }

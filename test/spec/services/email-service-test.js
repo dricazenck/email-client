@@ -68,15 +68,17 @@ describe('Email Client Modules - Build Email List', function() {
     it('Should is buildEmailList correctly', function() {
         var result = emailService.buildList(jsonValueOk);
 
-        expect(result).toContain("<li><div class='from-name'>Paulette Parker</div>");
+        expect(result).toContain("<li id='558070eecadb84b2cd4d5ee2'>");
+        expect(result).toContain("<div class='from-name'>Paulette Parker</div>");
         expect(result).toContain("<div class='subject'>Sub1</div>");
         expect(result).toContain("<li class='email-date'>23-06-2015</li>");
 
-        expect(result).toContain("<li><div class='from-name'>Britney Swanson</div>");
+        expect(result).toContain("<li id='558070ee57b34805dcfeaf07'>");
+        expect(result).toContain("<div class='from-name'>Britney Swanson</div>");
         expect(result).toContain("<div class='subject'>Sub2</div></li>");
         expect(result).toContain("<li class='email-date'>20-06-2015</li>");
 
-        expect(result).toContain("<li><div class='from-name'>fromName3</div>");
+        expect(result).toContain("<li id='558070ee'><div class='from-name'>fromName3</div>");
         expect(result).toContain("<div class='subject'>Subject3</div></li>");
         expect(result).toContain("<li class='email-date'>20-06-2015</li>");
 
