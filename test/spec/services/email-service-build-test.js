@@ -79,7 +79,8 @@ describe("Build View HTML to single email", function() {
         emailService.buildEmailView(jsonValueOk[0]);
 
         content = jQuery('#jasmine-fixtures');
-        expect(content).toContainText("Britney Swanson (britney_swanson@gmail.com)");
+        expect(content).toContainText("Britney Swanson");
+        expect(content).toContainText("(britney_swanson@gmail.com)");
         expect(content).toContainText("Sub2");
         expect(content).toContainText("Fugiat amet dolore enim magna");
 

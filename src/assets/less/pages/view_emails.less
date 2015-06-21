@@ -11,17 +11,58 @@
     }
 
     .container-content {
-        background: @white;
         padding-left: 30px;
         overflow-y: scroll;
+
+        .title {
+            font-size: @font-size-large;
+            font-weight: bold;
+            margin-bottom: 20px;
+
+            label {
+                font-size: @font-size-large;
+                font-weight: normal;
+            }
+        }
     }
 
     .show-result{
         text-align: center;
     }
 
+    .view-content {
+        .content {
+            max-width: 90%;
+            min-width: 500px
+        }
+    }
+
     .view-title {
         margin-bottom: 20px;
         margin-top: 20px;
+        font-weight: bold;
+
+        &:after {
+            content:"";
+            display: inline-block;
+            height: 0.5em;
+            vertical-align: bottom;
+            width: 90%;
+            margin-right: -100%;
+            margin-left: 5px;
+            border-top: 1px solid @hu-grayLight;
+        }
+
+        div {
+            margin-bottom: 10px;
+
+            label {
+                font-weight: normal;
+            }
+
+            span {
+                font-weight: normal;
+            }
+        }
     }
 }

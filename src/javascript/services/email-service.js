@@ -117,9 +117,9 @@ var emailService = (function(jQuery, dateUtils) {
     };
 
     var toEmailView = function(emailContent) {
-        jQuery("#email_from").html(emailContent.fromName+" ("+emailContent.fromEmail+")");
-        jQuery("#email_received").html(emailContent.formattedDate);
-        jQuery("#email_subject").html(emailContent.subject);
+        jQuery("#email_from").html("<label>From: </label>"+emailContent.fromName+" <span>("+emailContent.fromEmail+")</span>");
+        jQuery("#email_received").html("<label>Received: </label>"+emailContent.formattedDate);
+        jQuery("#email_subject").html("<label>Subject: </label>"+emailContent.subject);
         jQuery("#email_content").html(emailContent.content);
     };
 
