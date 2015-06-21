@@ -1,18 +1,13 @@
 <div class="container">
 	<div class="title">Email Client</div>
 
-	<div class="search">
-		<input class="search-input" aria-label="Search" placeholder="Search"
-			aria-autocomplete="both" aria-haspopup="true" spellcheck="false" type="text">
-	</div>
-
 	<div class="filters">
 		<input type="checkbox" id="read" name="read" value="read"> Read
   		<input type="checkbox" id="unread" name="unread" value="unread"> Unread
 	</div>
+
+	<div class="search">
+		<input class="search-input" aria-label="Search" placeholder="Search"
+			aria-autocomplete="both" aria-haspopup="true" spellcheck="false" type="text">
+	</div>
 </div>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		emailClient.initEvents();
-	});
-</script

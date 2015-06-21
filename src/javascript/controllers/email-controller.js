@@ -31,7 +31,7 @@ var emailClient = (function(jQuery, emailService) {
     };
 
     var loadInitPagesComponents = function() {
-        loadPage("#menu", "menu.html");
+        loadPage("#menu", "menu.html", initEventsMenu);
         loadPage("#emails", "emails.html");
         loadPage("#email", "view_empty.html");
     };
