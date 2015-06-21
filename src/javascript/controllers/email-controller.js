@@ -1,11 +1,26 @@
 var emailClient = (function(jQuery, emailService) {
 
     var PATH_PARTIALS = "assets/partials/",
-        emails = [];
+        emails = [],
+        emailContent = {};
 
     var init = function() {
         loadInitPagesComponents();
         loadEmails();
+    };
+
+    var loadEmails = function(filter) {
+        emailService.getEmails(function(data) {
+            if (data) {
+                emails = emailService.filter(data,filter);
+            } else {
+                emails = data;
+            }
+
+            jQuery("#email-list").html(emailService.buildList(emails));
+            jQuery("#result").html(emails.length+" conversations");
+            loadEventEmails();
+        });
     };
 
     var loadInitPagesComponents = function() {
@@ -14,15 +29,25 @@ var emailClient = (function(jQuery, emailService) {
         loadPage("#email", "view_empty.html");
     };
 
-    var loadPage = function(content, pageName) {
-        jQuery(content).load(PATH_PARTIALS + pageName);
+    var loadPage = function(content, pageName, callback) {
+        jQuery(content).load(PATH_PARTIALS + pageName, function() {
+            if (callback) {
+                callback();
+            }
+        });
     };
 
     var loadEventEmails = function(){
         var emailsList = jQuery("#email-list li");
 
         emailsList.click(function() {
-            console.log("ID.. "+this.id);
+            if (this.id !== "") {
+                emailContent = emailService.contentById(emails, this.id);
+
+                loadPage("#email", "view_email.html", function() {
+                    jQuery("#conteudo_email").html(emailContent[0].content);
+                });
+            }
         });
     };
 
@@ -47,20 +72,6 @@ var emailClient = (function(jQuery, emailService) {
                 loadEmails();
             }
         });
-    };
-
-    var loadEmails = function(filter) {
-        emailService.getEmails(function(data) {
-            if (data) {
-                emails = emailService.filter(data,filter);
-            } else {
-                emails = data;
-            }
-
-            jQuery("#email-list").html(emailService.buildList(emails));
-            jQuery("#result").html(emails.length+" conversations");
-        });
-
     };
 
     return {
