@@ -9,14 +9,40 @@
 
     ul {
         list-style-type: none;
+        padding-left: 10px;
     }
 
     li {
-        margin-bottom: 15px;
+        cursor: hand;
+        cursor: pointer;
+        margin: 15px;
+
+        &:after {
+            content:"";
+            display: inline-block;
+            height: 0.5em;
+            vertical-align: bottom;
+            width: 95%;
+            margin-right: -100%;
+            border-top: 1px solid @hu-grayLight;
+        }
     }
 
     .container-emails {
         overflow-y: scroll;
+    }
+
+    .email-date {
+        cursor: auto;
+        font-weight: bold;
+    }
+
+    .email-item {
+        padding: 8px;
+    }
+
+    .email-sected {
+        background-color: @hu-grayLighter;
     }
 
     .from-name {
@@ -25,9 +51,12 @@
 
     .subject {
         clear: both;
+        padding-bottom: 5px;
+        padding-top: 20px;
     }
 
     .time-ago {
         float: right;
+        margin-right: 8px;
     }
 }
