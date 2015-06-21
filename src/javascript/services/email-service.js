@@ -1,7 +1,7 @@
 var emailService = (function(jQuery, dateUtils) {
 
     var URL_SERVER = "/email-client/assets/emails.json",
-        RESULT_HTML = "<li><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></li>",
+        RESULT_HTML = "<li id='ID_EMAIL'><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></li>",
         RESULT_DATE_HTML = "<li class='email-date'>F_DATE</li>",
         EMPTY_VALUE = [];
 
@@ -74,11 +74,13 @@ var emailService = (function(jQuery, dateUtils) {
     var emailToHtml = function(emailItem) {
         if (typeof emailItem.grouped === 'undefined') {
             return RESULT_HTML
+                .replace("ID_EMAIL", emailItem._id)
                 .replace("FROM_NAME", emailItem.fromName)
                 .replace("TIME_AGO", emailItem.dateReceivedLabel)
                 .replace("SUBJECT", emailItem.subject);
         } else {
             return RESULT_HTML
+                .replace("ID_EMAIL", emailItem._id)
                 .replace("FROM_NAME", emailItem.fromName)
                 .replace("TIME_AGO", emailItem.dateReceivedLabel)
                 .replace("SUBJECT", emailItem.subject)+
@@ -94,7 +96,7 @@ var emailService = (function(jQuery, dateUtils) {
         return email.read === false;
     };
 
-    var filterBy = function(result, attribute) {
+    var filter = function(result, attribute) {
         if (attribute === "read") {
             return result.filter(isRead);
         } else if (attribute === "unread"){
@@ -104,12 +106,21 @@ var emailService = (function(jQuery, dateUtils) {
         }
     };
 
+    var getContentById = function(result, id) {
+        var isSameId = function (email) {
+            return email._id === id;
+        };
+
+        return result.filter(isSameId);
+    };
+
     return {
         getEmails: getEmails,
         buildList: toEmailList,
         sortByDate: sortByDate,
         groupByDate: groupByDate,
-        filterBy: filterBy
+        filter: filter,
+        contentById: getContentById
     };
 
 }(jQuery, dateUtils));
