@@ -9,6 +9,12 @@ var emailClient = (function(jQuery, emailService) {
         loadEmails();
     };
 
+    var defineHeight = function() {
+        var availableHeight = jQuery(window).height() - jQuery("#menu").height();
+        jQuery(".container-emails").css("height", availableHeight+"px");
+        jQuery(".container-content").css("height", availableHeight+"px");
+    };
+
     var loadEmails = function(filter) {
         emailService.getEmails(function(data) {
             if (data) {
@@ -20,6 +26,7 @@ var emailClient = (function(jQuery, emailService) {
             jQuery("#email-list").html(emailService.buildList(emails));
             jQuery("#result").html(emails.length+" conversations");
             loadEventEmails();
+            defineHeight();
         });
     };
 
@@ -37,7 +44,7 @@ var emailClient = (function(jQuery, emailService) {
         });
     };
 
-    var loadEventEmails = function(){
+    var loadEventEmails = function() {
         var emailsList = jQuery("#email-list li");
 
         emailsList.click(function() {
@@ -46,9 +53,12 @@ var emailClient = (function(jQuery, emailService) {
 
                 loadPage("#email", "view_email.html", function() {
                     emailService.buildEmailView(emailContent);
+                    defineHeight();
                 });
             }
         });
+
+        jQuery(window).resize(defineHeight);
     };
 
     var initEventsMenu = function() {
