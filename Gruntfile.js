@@ -111,6 +111,21 @@ module.exports = function(grunt) {
                 singleRun: true
             }
         },
+        connect: {
+            server: {
+                options:{
+                    base: ["src"],
+                    port: 9009,
+                    hostname: "*",
+                    keepalive: true
+                }
+            }
+        },
+        open: {
+            all: {
+                path: 'http://localhost:<%= connect.server.options.port%>'
+            }
+        },
         clean: ["test/coverage", "src/assets/js", "src/assets/css"]
     });
 
@@ -123,10 +138,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-open');
 
-    grunt.registerTask('prod', ['clean', 'less:prod', 'concat', 'uglify', 'replace:prod']);
+    grunt.registerTask('run', ['clean', 'less:prod', 'concat', 'uglify', 'replace:prod', 'open', 'connect']);
 
     grunt.registerTask('default', ['clean', 'jshint', 'less:development', 'concat', 'replace:dev', 'watch']);
+    grunt.registerTask('dev', ['clean', 'jshint', 'less:development', 'concat', 'replace:dev', 'watch']);
 
     grunt.registerTask('test', ['clean', 'jshint', 'concat', 'replace:dev', 'karma', 'watch']);
 };
