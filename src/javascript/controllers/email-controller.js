@@ -124,6 +124,7 @@ var emailClient = (function(jQuery, emailService) {
     return {
         init: init,
         initEvents: initEventsMenu,
+        loadEventEmails: loadEventEmails
     };
 
 }(jQuery, emailService));
