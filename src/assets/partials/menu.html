@@ -1,11 +1,6 @@
 <div class="container">
-	<div class="title">
-		Email Client
-	</div>
-
-	<div class="filters">
-		<input type="checkbox" id="read" name="read" value="read"> Read
-  		<input type="checkbox" id="unread" name="unread" value="unread"> Unread
+	<div class="email-icon">
+		<img src="assets/icons/mail-icon.png" />
 	</div>
 
 	<div class="search">
@@ -14,4 +9,20 @@
 	<button type="button" id="search-button" class="btn-search">
 		<img src="assets/icons/search.png" />
 	</button>
+
+	<div class="filters">
+		<span>Filter &#x25BC;</span>
+	</div>
+</div>
+<div class="filters-menu">
+	<ul>
+		<li>
+			<input type="checkbox" id="read" name="read" value="read">
+			<label for="read">Read</label>
+		</li>
+		<li>
+			<input type="checkbox" id="unread" name="unread" value="unread">
+			<label for="unread">Unread</label>
+		</li>
+	</ul>
 </div>
