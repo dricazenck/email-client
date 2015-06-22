@@ -1,6 +1,6 @@
 var emailService = (function(jQuery, dateUtils) {
 
-    var URL_SERVER = "/email-client/assets/emails.json",
+    var URL_SERVER = "assets/emails.json",
         RESULT_HTML = "<li id='ID_EMAIL'><div class='email-item'><div class='from-name'>FROM_NAME</div><div class='time-ago'>TIME_AGO</div><div class='subject'>SUBJECT</div></div></li>",
         RESULT_DATE_HTML = "<li class='email-date'><div>F_DATE</div></li>",
         EMPTY_VALUE = [],
