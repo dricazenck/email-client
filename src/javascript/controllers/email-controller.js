@@ -7,7 +7,6 @@ var emailClient = (function(jQuery, emailService) {
 
     var init = function() {
         loadInitPagesComponents();
-        loadEmails();
     };
 
     var defineHeight = function() {
@@ -33,7 +32,7 @@ var emailClient = (function(jQuery, emailService) {
 
     var loadInitPagesComponents = function() {
         loadPage("#menu", "menu.html", initEventsMenu);
-        loadPage("#emails", "emails.html");
+        loadPage("#emails", "emails.html", loadEmails);
         loadPage("#email", "view_empty.html");
     };
 
