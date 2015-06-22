@@ -28,4 +28,4 @@ For detailed view of test coverage go to: test / cove
 
 ## Static Versions
 
-To avoid browser cache the files on production mode are versioned
+To avoid browser cache the static files are versioned
