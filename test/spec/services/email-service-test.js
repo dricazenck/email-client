@@ -55,7 +55,7 @@ describe('tests for getEmails request', function() {
         expect(successArgs).toBe(jsonValueOk);
 
         request = jasmine.Ajax.requests.mostRecent();
-        expect(request.url).toBe("/email-client/assets/emails.json");
+        expect(request.url).toBe("assets/emails.json");
         expect(request.method).toBe('GET');
     });
 
