@@ -115,8 +115,12 @@ var emailService = (function(jQuery, dateUtils) {
         };
 
         var item = result.filter(isSameId);
-        item[0].formattedDate = dateUtils.formatDateTime(item[0].dateReceived);
-        return item[0];
+        if (item.length > 0){
+            item[0].formattedDate = dateUtils.formatDateTime(item[0].dateReceived);
+            return item[0];
+        } else {
+            return {};
+        }
     };
 
     var findByTerm = function(result, term) {
