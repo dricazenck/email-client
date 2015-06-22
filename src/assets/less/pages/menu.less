@@ -40,16 +40,24 @@
     }
 
     .filters-menu {
-        position: absolute;
-        height: 75px;
-        width: 200px;
-        right: 30px;
-        top: 42px;
         background-color: @white;
         border: 1px solid #ccc;
         box-shadow: 0px 4px 10px @gray;
         color: @black;
         display: none;
+        height: 75px;
+        position: absolute;
+        right: 30px;
+        top: 42px;
+        width: 140px;
+
+        input {
+            margin-left: 15px;
+        }
+
+        label {
+            padding-right: 50px;
+        }
 
         ul {
             list-style-type: none;
