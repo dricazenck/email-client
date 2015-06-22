@@ -20,9 +20,9 @@ describe("Button Click Event Checkbox", function() {
 	var spyEvent;
 
 	beforeEach(function() {
-		setFixtures("<div id='email-list'></div>"+
-            "<input type='checkbox' id='read' name='read' value='read'> Read"+
-            "<input type='checkbox' id='unread' name='unread' value='unread'> Unread");
+		setFixtures("div id=\"filters\"></div>"+
+            "<div id=\"filters-menu\"><input type='checkbox' id='read' name='read' value='read'> Read"+
+            "<input type='checkbox' id='unread' name='unread' value='unread'> Unread </div>");
 	});
 
 	it("should invoke the read click event.", function() {
@@ -74,7 +74,6 @@ describe("Button Click Event Checkbox", function() {
 	});
 });
 
-
 describe("Button Click Event Checkbox", function() {
 	var spyEvent;
 
@@ -103,5 +102,25 @@ describe("Button Click Event Checkbox", function() {
 		expect('click').toHaveBeenTriggeredOn('#search-button');
 		expect(spyEvent).toHaveBeenTriggered();
 		expect(input.val()).toBe('');
+	});
+});
+
+describe("Button Click Event to select one email to show", function() {
+	var spyEvent;
+
+	beforeEach(function() {
+		setFixtures("<div id='email-list'><ul><li id='1234' class='email-sected'></li><ul></div");
+	});
+
+	it("should invoke the read click event.", function() {
+        emailClient.loadEventEmails();
+        var button = jQuery('#email-list li');
+		var itemSelected = jQuery("#1234");
+		expect(itemSelected.hasClass("email-sected")).toBe(true);
+
+		spyEvent = spyOnEvent('#email-list li', 'click');
+		button.trigger("click");
+
+		expect(itemSelected.hasClass("email-sected")).toBe(false);
 	});
 });
