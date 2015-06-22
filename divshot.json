@@ -1,0 +1,5 @@
+{
+  "name": "email-client",
+  "root": "src",
+  "clean_urls": true
+}
