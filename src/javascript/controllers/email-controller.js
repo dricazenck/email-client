@@ -71,6 +71,20 @@ var emailClient = (function(jQuery, emailService) {
         var unreadButtom = jQuery("#unread");
         var inputSearch = jQuery("#search-input");
         var searchButtom = jQuery("#search-button");
+        var filtersMenu = jQuery(".filters-menu");
+        var filters = jQuery(".filters");
+
+        filters.click(function() {
+            filtersMenu.toggle();
+        });
+
+        jQuery(document).click(function(event) {
+            if (filters.find(event.target).length === 0 &&
+                filtersMenu.find(event.target).length === 0) {
+
+                filtersMenu.hide();
+            }
+        });
 
         readButtom.change(function() {
             unreadButtom.prop("checked", false);
