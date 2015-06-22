@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('run', ['clean', 'less:prod', 'concat', 'uglify', 'replace:prod', 'open', 'connect']);
 
-    grunt.registerTask('default', ['clean', 'jshint', 'less:development', 'concat', 'replace:dev', 'watch']);
+    grunt.registerTask('default', ['dev']);
     grunt.registerTask('dev', ['clean', 'jshint', 'less:development', 'concat', 'replace:dev', 'watch']);
 
     grunt.registerTask('test', ['clean', 'jshint', 'concat', 'replace:dev', 'karma', 'watch']);
